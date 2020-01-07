@@ -13,6 +13,8 @@ spec:
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/config.yaml") . | sha256sum }}
       labels:
         app: {{ template "alfresco-search.fullName" . }}-solr
         release: {{ .Release.Name }}
