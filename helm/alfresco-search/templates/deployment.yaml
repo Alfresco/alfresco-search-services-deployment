@@ -11,6 +11,11 @@ metadata:
     component: search
 spec:
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: {{ .Values.rollingUpdateMaxSurge | default 1 }}
+      maxUnavailable: {{ .Values.rollingUpdateMaxUnavailable | default 0 }}
   template:
     metadata:
       annotations:
@@ -62,6 +67,11 @@ spec:
             periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
             failureThreshold: 1
             timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+          # sleep to drain any existing connections
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/bash", "-c", "sleep 10"]
       initContainers:
         - name: init-db
           image: busybox
