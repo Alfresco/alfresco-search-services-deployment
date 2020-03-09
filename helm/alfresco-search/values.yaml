@@ -13,12 +13,12 @@ common: &commonConfig
   type: "search-services"
   searchServicesImage: &SSimageConfig
     repository: alfresco/alfresco-search-services
-    tag: "1.3.0.5"
+    tag: "latest"
     pullPolicy: &searchDockerImagePullPolicy Always
     internalPort: &searchDockerImageInternalPort 8983
   insightEngineImage: &IEimageConfig
     repository: quay.io/alfresco/insight-engine
-    tag: "1.1.0.5"
+    tag: "latest"
     pullPolicy: *searchDockerImagePullPolicy
     internalPort: *searchDockerImageInternalPort
   service: &serviceConfig
@@ -64,7 +64,7 @@ master:
   <<: *commonConfig
   insightEngineImage:
     <<: *IEimageConfig
-    tag: "master"
+    tag: "latest"
   service:
     <<: *serviceConfig
     externalPort: &searchExternalPort 80
@@ -86,7 +86,7 @@ slave:
   <<: *commonConfig
   insightEngineImage:
     <<: *IEimageConfig
-    tag: "slave"
+    tag: "latest"
   service:
     <<: *serviceConfig
     name: solr-slave
