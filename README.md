@@ -1,5 +1,7 @@
 # Alfresco Search Deployment
 
+**NOTE: This repository is now deprecated and archived as the Search Helm Chart has been moved within the ACS Helm Chart, you can now find it here: https://github.com/Alfresco/acs-deployment/tree/master/helm/alfresco-content-services/charts/alfresco-search.**
+
 ## Contents of this repository
 a) Alfresco Content Services deployed via [docker-compose](docker-compose/docker-compose.yml)
 1. Alfresco Repository
